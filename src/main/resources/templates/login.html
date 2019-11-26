@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <title>Student Pickup Management </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+.error{
+color:red;
+}
+h2{
+color:red;
+}
+* {
+  box-sizing: border-box;
+}
+a { color :darkred;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: green;
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 50%;
+  height: 350px; /* only for demonstration, should be removed */
+  background: lightblue;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 50%;
+  background-color: black;
+  height: 350px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: green;
+  padding: 10px;
+  text-align: center;
+  color: white;
+
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body><center>
+    <img src="../static/school logo.jpg"  height="8%" width="8%" alt="Education World Welcomes you!" th:src="@{school logo.jpg}">
+    <strong>Rainbow Elementary School</strong></center>
+<header>
+    <h1 th:text = ${title}>Teacher Sign In</h1>
+</header>
+
+<section>
+    <div class="container"><center>
+        <nav id="main-nav">
+            <ul>
+                <br>
+                <br>
+                <h2 th:text=${login}> </h2>
+                <a href="login.html">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="registration.html">Create Account</a>
+
+            </ul>
+            <form method="post" style="max-width:600px;" th:object="${loginModel}">
+                                <div class="form-group">
+                    <label th:for="username">User Name</label>
+                    <input class="form-control" th:field="*{username}" /><br>
+                    <span th:errors="*{username}" class="error"></span>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <label th:for="password">Password</label>&nbsp;&nbsp;
+                    <input type="password" class="form-control" th:field="*{password}" /><br>
+                    <span th:errors="*{password}" class="error"></span>
+                </div>
+                <br>
+                <input type="submit" value="submit" />
+
+            </form>
+        </nav>
+
+    </center>
+    </div>
+    <article>
+        <img src="../static/tree.jpg"  style="width:100%" height="100%" width="60%" alt="Education World Welcomes you!" th:src="@{tree.jpg}">
+    </article>
+</section>
+
+<footer>
+    <p>Thanku for being part of our Education System! If you are having difficulties logging into your Account, Please contact Front Office        </p>
+    &copy; Copyright 2019. All Rights Reserved.
+    <a href="contact.html">Contact</a>
+</footer>
+
+
+
+</body>
+</html>
+
+
+
+
