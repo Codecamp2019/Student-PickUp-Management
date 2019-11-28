@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <title>Student Pickup Management </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+.error{
+color:red;
+}
+input[type=submit] {
+    border: 1px solid rgb(37, 34, 34);
+    color:solidBlack;
+    background-color: bluegrey;
+    font-size: 16px;
+    width: 5em;  height: 1.5em;
+}
+h2{
+color:red;
+}
+* {
+  box-sizing: border-box;
+}
+a { color :darkred;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: rgb(102, 102, 153);
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 50%;
+  height: 350px; /* only for demonstration, should be removed */
+  background: rgb(51, 204, 204);
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 50%;
+  background-color: black;
+  height: 350px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: rgb(102, 102, 153);
+  padding: 10px;
+  text-align: center;
+  color: white;
+
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body><center>
+    <img src="../static/school logo.jpg"  height="8%" width="8%" alt="Education World Welcomes you!" th:src="@{school logo.jpg}">
+    <strong>Rainbow Elementary School</strong></center>
+<header>
+    <h1 th:text = ${title}>Teacher Registration Form</h1>
+</header>
+
+<section>
+    <div class="container"><center>
+        <nav id="registration-nav">
+            <ul>
+                <h2 th:text=${registration}> </h2>
+                <a href="/user">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/user/add">Create Account</a>
+
+            </ul>
+            <form method="post" style="max-width:600px;" th:object="${userModel}">
+                <table>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="firstname">First Name : </label></td>
+                            <td><input class="form-control" th:field="*{firstname}"/></td>
+                            <td><span th:errors="*{firstname}" class="error"></span></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="lastname">Last Name : </label></td>
+                            <td><input class="form-control" th:field="*{lastname}" /></td>
+                            <td><span th:errors="*{lastname}" class="error"></span></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="email">Email : </label></td>
+                            <td><input class="form-control" th:field="*{email}" /></td>
+                            <td><span th:errors="*{email}" class="error"></span></td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="username">Desired Username : </label></td>
+                            <td><input class="form-control" th:field="*{username}" /></td>
+                            <td><span th:errors="*{username}" class="error"></span></td>
+                        </div>
+                    </tr>
+<!--                    <tr>-->
+<!--                        <div class="form-group">-->
+<!--                            <td><label th:for="password">Password : </label></td>-->
+<!--                            <td><input type="password" class="form-control" th:field="*{password}" /></td>-->
+<!--                            <td><span th:errors="*{password}" class="error"></span></td>-->
+<!--                        </div>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <div class="form-group">-->
+<!--                            <td><label th:for="verifypassword">Verify Password : </label></td>-->
+<!--                            <td><input type="verifypassword" class="form-control" th:field="*{verifypassword}" /></td>-->
+<!--                            <td><span th:errors="*{verifypassword}" class="error"></span></td>-->
+<!--                        </div>-->
+<!--                    </tr>-->
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="password" for="Password">Password</label></td>
+                            <td><input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Password"></td>
+                            <td><p class="error"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="verifypassword" for="Password">Verify Password</label></td>
+                            <td><input type="password" class="form-control" th:field="*{verifypassword}" id="verifypassword" placeholder="Password"></td>
+                            <td><p class="error"th:if="${#fields.hasErrors('verifypassword')}" th:errors="*{verifypassword}"></p></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="userType"> User Type : </label></td>
+                            <td><select name="userType" class="form-control" th:field="*{userType}">
+                            <option value="Teacher">Teacher</option>
+                            <option value="Administration">Administration</option>
+                                <option value="Parent">Parent</option></select></td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="grade">Grade : </label></td>
+                            <td><select name="grade" class="form-control" th:field="*{grade}">
+                            <option value="K">K</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option></select></td>
+                            <td></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="AccessId">AccessID : </label></td>
+                            <td><input class="form-control" th:field="*{AccessId}"/></td>
+                            <td><span th:errors="*{AccessId}" class="error"></span></td>
+                        </div>
+                    </tr>
+                    <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td colspan="2" align="center"><input type="submit" value="submit" /></td></tr>
+                </table>
+            </form>
+        </nav>
+
+    </center>
+    </div>
+    <article>
+        <img src="../static/tree.jpg"  style="width:100%" height="100%" width="60%" alt="Education World Welcomes you!" th:src="@{tree.jpg}">
+    </article>
+</section>
+
+<footer>
+    <p>Thanku for being part of our Education System! If you are having difficulties creating your Account, Please contact Front Office        </p>
+    &copy; Copyright 2019. All Rights Reserved.
+    <a href="contact.html">Contact</a>
+</footer>
+
+
+
+</body>
+</html>
+
+
+
+

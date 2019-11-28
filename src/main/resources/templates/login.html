@@ -10,6 +10,13 @@
 .error{
 color:red;
 }
+input[type=submit] {
+    border: 0.5px solid rgb(37, 34, 34);
+    color:solidBlack;
+    background-color: bluegrey;
+    font-size: 16px;
+    width: 5em;  height: 1.5em;
+}
 h2{
 color:red;
 }
@@ -88,30 +95,36 @@ footer {
 
 <section>
     <div class="container"><center>
-        <nav id="main-nav">
+        <nav id="login-nav">
             <ul>
                 <br>
                 <br>
                 <h2 th:text=${login}> </h2>
-                <a href="login.html">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="registration.html">Create Account</a>
+                <a href="/user">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="user/add">Create Account</a>
 
             </ul>
             <form method="post" style="max-width:600px;" th:object="${loginModel}">
-                                <div class="form-group">
-                    <label th:for="username">User Name</label>
-                    <input class="form-control" th:field="*{username}" /><br>
-                    <span th:errors="*{username}" class="error"></span>
-                </div>
-                <br>
+                <table>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="username">User Name</label></td>
+                            <td><input class="form-control" th:field="*{username}" /></td>
+                            <td><span th:errors="*{username}" class="error"></span></td>
+                        </div>
+                    </tr>
 
-                <div class="form-group">
-                    <label th:for="password">Password</label>&nbsp;&nbsp;
-                    <input type="password" class="form-control" th:field="*{password}" /><br>
-                    <span th:errors="*{password}" class="error"></span>
-                </div>
-                <br>
-                <input type="submit" value="submit" />
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="password">Password</label>&nbsp;&nbsp;</td>
+                            <td><input type="password" class="form-control" th:field="*{password}" /></td>
+                            <td><span th:errors="*{password}" class="error"></span></td>
+                        </div>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr><td></td></tr>
+                    <tr><td colspan="2" align="center"><input type="submit" value="submit" /></td></tr>
 
+                </table>
             </form>
         </nav>
 
