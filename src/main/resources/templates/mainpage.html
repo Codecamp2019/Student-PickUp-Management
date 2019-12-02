@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
+<head  th:replace="fragments :: head">
     <meta charset="UTF-8">
-    <title >welcome</title>
+    <title student add page</title>
 </head>
 <body>
-<h1 th:text=${userName}></h1>
-<h2>welcome to the main page user</h2>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1 th:text = "${username}"> </h1>
+<table class="table">
+<tr th:each="student:${students}">
+    <td><a href="/addstudent/eachstudent" th:text="${student.studentFirstName}"></a></td>
+    <td th:text="${student.pickUpType}"></td>
+    <input type="hidden" id="StudentId" name="studentId" value="${student.student_id">
+</tr>
+</table>
 </body>
 </html>
