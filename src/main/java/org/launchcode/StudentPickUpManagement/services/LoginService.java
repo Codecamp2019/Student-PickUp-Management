@@ -1,8 +1,7 @@
 package org.launchcode.StudentPickUpManagement.services;
 
 import org.launchcode.StudentPickUpManagement.models.LoginModel;
-import org.launchcode.StudentPickUpManagement.models.User;
-import org.launchcode.StudentPickUpManagement.models.UserModel;
+import org.launchcode.StudentPickUpManagement.models.Entity.User;
 import org.launchcode.StudentPickUpManagement.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

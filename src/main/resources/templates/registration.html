@@ -98,7 +98,7 @@ footer {
         <nav id="registration-nav">
             <ul>
                 <h2 th:text=${registration}> </h2>
-                <a href="/user">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/user/add">Create Account</a>
+                <a href="/user">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/adduser">Create Account</a>
 
             </ul>
             <form method="post" style="max-width:600px;" th:object="${userModel}">
@@ -148,16 +148,16 @@ footer {
 <!--                    </tr>-->
                     <tr>
                         <div class="form-group">
-                            <td><label th:for="password" for="Password">Password</label></td>
+                            <td><label th:for="password" for="password">Password</label></td>
                             <td><input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Password"></td>
                             <td><p class="error"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></td>
                         </div>
                     </tr>
                     <tr>
                         <div class="form-group">
-                            <td><label th:for="verifypassword" for="Password">Verify Password</label></td>
+                            <td><label th:for="verifypassword" for="verifypassword">Verify Password</label></td>
                             <td><input type="password" class="form-control" th:field="*{verifypassword}" id="verifypassword" placeholder="Password"></td>
-                            <td><p class="error"th:if="${#fields.hasErrors('verifypassword')}" th:errors="*{verifypassword}"></p></td>
+                            <td><p class="error" th:if="${#fields.hasErrors('verifypassword')}" th:errors="*{verifypassword}"></p></td>
                         </div>
                     </tr>
                     <tr>

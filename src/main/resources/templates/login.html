@@ -100,7 +100,7 @@ footer {
                 <br>
                 <br>
                 <h2 th:text=${login}> </h2>
-                <a href="/user">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="user/add">Create Account</a>
+                <a href="/user">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/adduser">Create Account</a>
 
             </ul>
             <form method="post" style="max-width:600px;" th:object="${loginModel}">
@@ -131,7 +131,7 @@ footer {
     </center>
     </div>
     <article>
-        <img src="../static/tree.jpg"  style="width:100%" height="100%" width="60%" alt="Education World Welcomes you!" th:src="@{tree.jpg}">
+        <img src="tree.jpg"  style="width:100%" height="100%" width="60%" alt="Education World Welcomes you!" th:src="@{tree.jpg}">
     </article>
 </section>
 

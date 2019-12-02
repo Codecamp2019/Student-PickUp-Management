@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head  th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title student add page></title>
+</head>
+<body>
+<h1 th:text = "${username}"> </h1>
+<nav th:replace="fragments :: navigation"></nav>
+<form method="post" style="max-width:600px;" th:object="${studentModel}">
+    <table>
+        <tr>
+            <div class="form-group">
+                <td><label >Student Name:</label></td>
+                <td><input for="studentFirstName" class="form-control" th:field="*{studentFirstName}" placeholder="First Name"/></td>
+                <td><span th:errors="*{studentFirstName}" class="error"></span></td>
+                <td><input for="studentLastName" class="form-control" th:field="*{studentLastName}" placeholder="Last Name"/></td>
+                <td><span th:errors="*{studentLastName}" class="error"></span></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="form-group">
+                <td><label >Parent Name:</label></td>
+                <td><input for="parentFirstName" class="form-control" th:field="*{parentFirstName}" placeholder="First Name"/></td>
+                <td><span th:errors="*{parentFirstName}" class="error"></span></td>
+                <td><input for="parentLastName" class="form-control" th:field="*{parentLastName}" placeholder="Last Name"/></td>
+                <td><span th:errors="*{parentLastName}" class="error"></span></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="form-group">
+                <td><label th:for="pickUpType"> PickUp Type : </label></td>
+                <td><select name="pickUpType" class="form-control" th:field="*{pickUpType}">
+                    <option value="BusLine">Bus Line</option>
+                    <option value="Walkers">Walkers</option>
+                    <option value="CarLine">Car Line</option>
+                    <option value="AfterCare">AfterCare</option>
+                </select></td>
+            </div>
+        </tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td colspan="2" align="center"><input type="submit" value="submit" /></td></tr>
+    </table>
+</form>
+</body>
+</html>

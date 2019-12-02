@@ -1,7 +1,7 @@
 package org.launchcode.StudentPickUpManagement.services;
 
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.launchcode.StudentPickUpManagement.models.User;
+import org.launchcode.StudentPickUpManagement.models.Entity.User;
 import org.launchcode.StudentPickUpManagement.models.UserModel;
 import org.launchcode.StudentPickUpManagement.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,7 @@ public class UserService {
         userEnt.setAccessId(userModel.getAccessId());
         return userEnt;
     }
+
     private static final int iterations = 2*1;
     private static final int saltLen = 32;
     private static final int desiredKeyLen = 256;

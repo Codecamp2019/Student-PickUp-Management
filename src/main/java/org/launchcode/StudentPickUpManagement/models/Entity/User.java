@@ -1,17 +1,17 @@
-package org.launchcode.StudentPickUpManagement.models;
+package org.launchcode.StudentPickUpManagement.models.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue
-    private int id;
+    private int user_id;
     @NotNull
     private String firstname;
     @NotNull
@@ -29,13 +29,21 @@ public class User {
 
     @NotNull
     private String AccessId;
+    @OneToMany
+    @JoinColumn(name="student_id")
+    private List<Student> students = new ArrayList<>();
 
-    public int getId() {
-        return id;
+    public User() {
+    }
+    public User(String name) {
+        this.username = name;
+    }
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getFirstname() {
@@ -98,4 +106,8 @@ public class User {
         AccessId = accessId;
     }
 
-}
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    }
