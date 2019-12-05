@@ -92,4 +92,13 @@ private User user;
     public void setPickUpType(String pickUpType) {
         this.pickUpType = pickUpType;
     }
+    //    public org.launchcode.StudentPickUpManagement.models.Entity.pickUpType getPickUpType() {
+//        return pickUpType;
+//    }
+//
+//    public void setPickUpType(org.launchcode.StudentPickUpManagement.models.Entity.pickUpType pickUpType) {
+//        this.pickUpType = pickUpType;
+//    }
 }
+
+

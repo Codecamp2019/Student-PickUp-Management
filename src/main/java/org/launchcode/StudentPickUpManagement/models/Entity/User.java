@@ -19,7 +19,7 @@ public class User {
     @Email
     private String email;
     @NotNull
-    @Size(min = 5, max=15)
+    @Size(min = 5, max=20)
     private String username;
     @NotNull
     private String password;
@@ -32,11 +32,10 @@ public class User {
     @OneToMany
     @JoinColumn(name="student_id")
     private List<Student> students = new ArrayList<>();
-
     public User() {
     }
-    public User(String name) {
-        this.username = name;
+    public User(int id) {
+        this.user_id = id;
     }
     public int getUser_id() {
         return user_id;

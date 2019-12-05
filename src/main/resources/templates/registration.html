@@ -132,34 +132,35 @@ footer {
                             <td><span th:errors="*{username}" class="error"></span></td>
                         </div>
                     </tr>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="password">Password : </label></td>
+                            <td><input type="password" class="form-control" th:field="*{password}" /></td>
+                            <td><span th:errors="*{password}" class="error"></span></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                            <td><label th:for="verifypassword">Verify Password : </label></td>
+                            <td><input type="password" class="form-control" th:field="*{verifypassword}" /></td>
+                            <td><span th:errors="*{verifypassword}" class="error"></span></td>
+                        </div>
+                    </tr>
+
 <!--                    <tr>-->
 <!--                        <div class="form-group">-->
 <!--                            <td><label th:for="password">Password : </label></td>-->
-<!--                            <td><input type="password" class="form-control" th:field="*{password}" /></td>-->
+<!--                            <td><input class="form-control" th:field="*{password}" /></td>-->
 <!--                            <td><span th:errors="*{password}" class="error"></span></td>-->
 <!--                        </div>-->
 <!--                    </tr>-->
 <!--                    <tr>-->
 <!--                        <div class="form-group">-->
-<!--                            <td><label th:for="verifypassword">Verify Password : </label></td>-->
-<!--                            <td><input type="verifypassword" class="form-control" th:field="*{verifypassword}" /></td>-->
-<!--                            <td><span th:errors="*{verifypassword}" class="error"></span></td>-->
+<!--                            <label th:for="verifyPassword">Verify</label>-->
+<!--                            <input class="form-control" th:field="*{verifyPassword}" type="password" />-->
+<!--                            <div class="error" th:errors="*{verifyPassword}"></div>-->
 <!--                        </div>-->
 <!--                    </tr>-->
-                    <tr>
-                        <div class="form-group">
-                            <td><label th:for="password" for="password">Password</label></td>
-                            <td><input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Password"></td>
-                            <td><p class="error"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></td>
-                        </div>
-                    </tr>
-                    <tr>
-                        <div class="form-group">
-                            <td><label th:for="verifypassword" for="verifypassword">Verify Password</label></td>
-                            <td><input type="password" class="form-control" th:field="*{verifypassword}" id="verifypassword" placeholder="Password"></td>
-                            <td><p class="error" th:if="${#fields.hasErrors('verifypassword')}" th:errors="*{verifypassword}"></p></td>
-                        </div>
-                    </tr>
                     <tr>
                         <div class="form-group">
                             <td><label th:for="userType"> User Type : </label></td>

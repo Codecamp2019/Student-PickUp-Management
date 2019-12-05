@@ -2,19 +2,51 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head  th:replace="fragments :: head">
     <meta charset="UTF-8">
-    <title student add page</title>
+    <title student add page></title>
 </head>
 <body>
-
-<nav th:replace="fragments :: navigation"></nav>
-
 <h1 th:text = "${username}"> </h1>
+<nav th:replace="fragments :: navigation"></nav>
 <table class="table">
-<tr th:each="student:${students}">
-    <td><a href="/addstudent/eachstudent" th:text="${student.studentFirstName}"></a></td>
-    <td th:text="${student.pickUpType}"></td>
-    <input type="hidden" id="StudentId" name="studentId" value="${student.student_id">
-</tr>
+    
+<!--<tr th:each="student:${students}">-->
+<!--&lt;!&ndash;    <td th:text="${student.student_id}"></td>&ndash;&gt;-->
+<!--    <td><a href="/addstudent/eachstudent/${student.student_id}" th:value="${student.student_id}" th:text="${student.studentFirstName}" ></a></td>-->
+
+<!--    <td th:text="${student.pickUpType}"></td>-->
+<!--&lt;!&ndash;    <input type="hidden" >&ndash;&gt;-->
+<!--</tr>-->
+
+
+    <tr th:unless="${students} and ${students.size()}">No students yet :( </tr>
+
+
+           <tr th:each="student : ${students}"class="list-group-item-dark">
+    <td> <a th:href="'/addstudent/eachstudent/' + ${student.student_id}" th:text="${student.studentFirstName}"style="font-size:25px; "></a></td>
+            <td th:text="${student.pickUpType}"></td>
+        </tr>
 </table>
+<!--&lt;!&ndash;</table>&ndash;&gt;-->
+<!--<h1 th:text = "${username}"> </h1>-->
+<!--    <class="container"></class>-->
+<!--<div style="display:inline-block;">-->
+<!--     <a> Bus Line</a>-->
+
+<!--</div>-->
+<!--    <div class="col-xs-4">-->
+<!--        <a th:each="student:${students}">-->
+<!--           <li href="/addstudent/eachstudent" th:text="${student.studentFirstName}"></li></a>-->
+<!--    </div>-->
+
+<!--<div style="display:inline-block;">-->
+<!--    <a> Car Line</a>-->
+
+<!--</div>-->
+<!--<div class="col-xs-4">-->
+<!--    <a th:each="student:${students}">-->
+<!--        <li href="/addstudent/eachstudent" th:text="${student.studentFirstName}"></li></a>-->
+<!--</div>-->
+
+
 </body>
 </html>

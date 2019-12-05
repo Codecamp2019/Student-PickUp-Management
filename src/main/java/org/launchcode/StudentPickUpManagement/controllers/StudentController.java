@@ -44,20 +44,33 @@ public class StudentController {
         //create userid
 //        User user = userDao.findById(21);
 //        System.out.println("User..."+user.getEmail());
+//        User user = userDao.findByUsername("username");
+//        newstudent.setUser(user);
         studentService.createStudent(newstudent);
         model.addAttribute("students", studentDao.findAll());
+        //model.addAttribute("students", studentDao.findByColumnandValue(newstudent.getPickUpType(),"BUS_LINE"));
         return "mainpage";
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(Model model) {
-        model.addAttribute("username", "");
+        model.addAttribute("username", "Thanku");
         return "login";
     }
-        @RequestMapping(value = "/eachstudent", method = RequestMethod.GET)
-    public String eachstudent(Model model) {
-        model.addAttribute("title", "Update Student Page");
-        //find student details by id and update the pickup type
-        return "updatestudent";
+           @RequestMapping(value = "/eachstudent/{studentId}", method = RequestMethod.GET)
+    public String eachstudent(Model model, @PathVariable int studentId) {
+                 model.addAttribute("title", "Update Student Page");
+        //find student details by id and update the pickup typ
+               Student student = studentDao.findById(studentId).get();
+               model.addAttribute(new StudentModel());
+               model.addAttribute("student", student);
+              // model.addAttribute("studentId", student.getStudent_id());
+       return "updatestudent";
+    }
+    @RequestMapping(value = "/eachstudent", method = RequestMethod.POST)
+    public String eachstudent(@ModelAttribute StudentModel newstudent, Model model) throws Exception{
+          studentService.createStudent(newstudent);
+          model.addAttribute("students", studentDao.findAll());
+    return "mainpage";
     }
 }
 

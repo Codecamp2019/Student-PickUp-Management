@@ -27,13 +27,12 @@ public class UserModel{
         @Email
         private String email;
         @NotNull
-        @Size(min = 5, max = 15)
+        @Size(min = 5, max = 20)
         private String username;
         @NotNull
-        @Size(min = 6, max = 15)
+        @Size(min = 6, max = 20)
         private String password;
-        @NotNull
-
+        @NotNull(message = "password and verify doesnot match")
         private String verifypassword;
         private String userType;
 
@@ -88,7 +87,15 @@ public class UserModel{
     }
 
     public void setVerifypassword(String verifypassword) {
+            verifypassword=checkPassword(verifypassword);
         this.verifypassword = verifypassword;
+    }
+    private String checkPassword(String verifypassword) {
+        if (verifypassword != null
+                && !password.equals(verifypassword)) {
+            return(verifypassword = null);
+        }
+        return verifypassword;
     }
 
     public String getUserType() {
@@ -118,37 +125,3 @@ public class UserModel{
         }
     }
 
-//
-//
-//public class FieldMatchValidator implements ConstraintValidator<UserModel, Object> {
-//
-//    private String firstFieldName;
-//    private String secondFieldName;
-//
-//    @Override
-//    public void initialize(final UserModel constraintAnnotation) {
-//        firstFieldName = constraintAnnotation.first();
-//        secondFieldName = constraintAnnotation.second();
-//    }
-//
-//    @Override
-//    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
-//        try {
-//            final Object firstObj = BeanUtils.getProperty(value, firstFieldName);
-//            final Object secondObj = BeanUtils.getProperty(value, secondFieldName);
-//
-//            boolean isValid = firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
-//
-//            if (!isValid) {
-//                context.disableDefaultConstraintViolation();
-//                context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate()).addNode(secondFieldName).addConstraintViolation();
-//            }
-//
-//            return isValid;
-//        }
-//        catch (final Exception ignore) {
-//            // ignore
-//        }
-//        return true;
-//    }
-//}

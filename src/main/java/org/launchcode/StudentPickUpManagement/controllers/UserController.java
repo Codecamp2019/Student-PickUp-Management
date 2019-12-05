@@ -1,5 +1,5 @@
 package org.launchcode.StudentPickUpManagement.controllers;
-
+import org.launchcode.StudentPickUpManagement.models.Entity.User;
 import org.launchcode.StudentPickUpManagement.models.StudentModel;
 import org.launchcode.StudentPickUpManagement.models.UserModel;
 import org.launchcode.StudentPickUpManagement.models.data.StudentDao;
@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 @SessionAttributes("username")
 @RequestMapping("adduser")
 
-public class UserController {
+public class UserController
+{
+//        extends AbstractController {
     @Autowired
     private UserDao userDao;
     @Autowired
@@ -41,14 +44,21 @@ public class UserController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
 
-    public String add(@ModelAttribute @Valid UserModel newuser, Errors errors, Model model) throws Exception {
+    public String add(@ModelAttribute @Valid UserModel newuser, Errors errors, Model model, HttpServletRequest request) throws Exception {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Teacher Registration page: ");
             return "registration";
         }
+//        User existingUser = userDao.findByUsername(newuser.getUsername());
+//        if (existingUser != null) {
+//            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+//            return "registration";
+//        }
         userService.createUser(newuser);
-        model.addAttribute("userName", "Welcome " + newuser.getUsername() + "");
+        //User newuser1 = userDao.findByUsername(newuser.getUsername());
+       // setUserInSession(request.getSession(), newuser1);
+        model.addAttribute("username", "Welcome " + newuser.getUsername() + "");
         model.addAttribute("students", studentDao.findAll());
         return "mainpage";
     }
@@ -57,6 +67,6 @@ public class UserController {
         model.addAttribute(new StudentModel());
         model.addAttribute("students", studentDao.findAll());
         return "mainpage";
-    }
 
-}
+    }
+   }

@@ -31,10 +31,13 @@
             <div class="form-group">
                 <td><label th:for="pickUpType"> PickUp Type : </label></td>
                 <td><select name="pickUpType" class="form-control" th:field="*{pickUpType}">
-                    <option value="BusLine">Bus Line</option>
-                    <option value="Walkers">Walkers</option>
-                    <option value="CarLine">Car Line</option>
-                    <option value="AfterCare">AfterCare</option>
+                    <option th:each="pickUpType : ${T(org.launchcode.StudentPickUpManagement.models.Entity.pickUpType).values()}"
+                            th:text = "${pickUpType.type}"
+                            th:value="${pickUpType}"></option>
+<!--                    <option value="BusLine">Bus Line</option>-->
+<!--                    <option value="Walkers">Walkers</option>-->
+<!--                    <option value="CarLine">Car Line</option>-->
+<!--                    <option value="AfterCare">AfterCare</option>-->
                 </select></td>
             </div>
         </tr>

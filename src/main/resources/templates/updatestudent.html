@@ -2,21 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head  th:replace="fragments :: head">
     <meta charset="UTF-8">
-    <title student add page></title>
+
 </head>
 <body>
 <h1 th:text = "${username}"> </h1>
 <nav th:replace="fragments :: navigation"></nav>
+<center><h4 th:text = ${title}>Student Update Page</h4></center>
 
-            <table class="table">
-            <tr th:each="student:${students}">
-                <td th:text="${student.studentFirstName}"></td>
+
+<form th:action="@{/addstudent/eachstudent}" th:object="${studentModel}" method="post">
+    <table class="container" th:each="student:${student}">
+            <tr class="list-group-item-dark">
+                <td ><label >Student Name:</label></td>
+                <td th:for="studentFirstName" th:text="${student.studentFirstName}"></td>
+                <td th:for="studentLastName" th:text="${student.studentLastName}"></td>
             </tr>
-            <tr>
-                <td th:text="${student.pickUpType}"></td></tr>
-
+            <tr class="list-group-item-dark">
+                <td><label >Parent Name:</label></td>
+                <td th:for="parentFirstName" th:text="${student.parentFirstName}"></td>
+                <td th:for="parentLastName" th:text="${student.parentLastName}"></td>
+            </tr>
+         <tr class="list-group-item-dark"><td><label th:for="pickUpType">PickUp Type:</label></td>
+            <td><select>
+                <option th:each="pickUpType : ${T(org.launchcode.StudentPickUpManagement.models.Entity.pickUpType).values()}"
+                        th:text = "${pickUpType.type}"
+                        th:value="${student.pickUpType}" name="pickUpType"></option></select>
+            </td>
+             <td></td>
+        </tr>
+        <tr class="list-group-item-dark"><td colspan="3" align="center"><input type="submit" value="submit"/></td></tr>
     </table>
-<input type="submit" value="submit" />
-</form>
+        </form>
+
+
+
+
+
 </body>
 </html>
