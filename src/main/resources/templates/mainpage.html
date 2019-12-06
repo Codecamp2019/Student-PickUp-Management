@@ -7,38 +7,75 @@
 <body>
 <h1 th:text = "${username}"> </h1>
 <nav th:replace="fragments :: navigation"></nav>
-<table class="table">
-    
-<!--<tr th:each="student:${students}">-->
-<!--&lt;!&ndash;    <td th:text="${student.student_id}"></td>&ndash;&gt;-->
-<!--    <td><a href="/addstudent/eachstudent/${student.student_id}" th:value="${student.student_id}" th:text="${student.studentFirstName}" ></a></td>-->
 
-<!--    <td th:text="${student.pickUpType}"></td>-->
-<!--&lt;!&ndash;    <input type="hidden" >&ndash;&gt;-->
-<!--</tr>-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <label>AFTER CARE</label><br>
+            <table>
+                <tr th:each="student : ${students1}" >
+                    <td> <a th:href="'/addstudent/eachstudent/' + ${student.student_id}" th:text="${student.studentFirstName}"style="font-size:25px; "></a></td>
+                </tr>
+                <tr th:unless="${students1} and ${students1.size()}">No students yet :( </tr>
+            </table>
+
+        </div>
+
+        <div class="col-sm">
+            <label>BUS LINE</label><br>
+            <table>
+                <tr th:unless="${students2} and ${students2.size()}">No students yet :( </tr>
+                <tr th:each="student : ${students2}">
+                    <td> <a th:href="'/addstudent/eachstudent/' + ${student.student_id}" th:text="${student.studentFirstName}"style="font-size:25px; "></a></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-sm">
+            <label>CAR LINE</label><br>
+            <table>
+                <tr th:unless="${students3} and ${students3.size()}">No students yet :( </tr>
+                <tr th:each="student : ${students3}" >
+                    <td> <a th:href="'/addstudent/eachstudent/' + ${student.student_id}" th:text="${student.studentFirstName}"style="font-size:25px; "></a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm">
+            <label>WALKERS</label><br>
+            <table>
+                <tr th:unless="${students4} and ${students4.size()}">No students yet :( </tr>
+                <tr th:each="student : ${students4}" >
+                    <td> <a th:href="'/addstudent/eachstudent/' + ${student.student_id}" th:text="${student.studentFirstName}"style="font-size:25px; "></a></td>
+                </tr>
+            </table>
+        </div>
+</div>
 
 
-    <tr th:unless="${students} and ${students.size()}">No students yet :( </tr>
 
 
-           <tr th:each="student : ${students}"class="list-group-item-dark">
-    <td> <a th:href="'/addstudent/eachstudent/' + ${student.student_id}" th:text="${student.studentFirstName}"style="font-size:25px; "></a></td>
-            <td th:text="${student.pickUpType}"></td>
-        </tr>
-</table>
+
+
+
+
+
+
+
+
+
 <!--&lt;!&ndash;</table>&ndash;&gt;-->
 <!--<h1 th:text = "${username}"> </h1>-->
-<!--    <class="container"></class>-->
-<!--<div style="display:inline-block;">-->
+
 <!--     <a> Bus Line</a>-->
 
 <!--</div>-->
-<!--    <div class="col-xs-4">-->
+<!--<section class="container-fluid">-->
+<!--<div class="col-xs-4">-->
 <!--        <a th:each="student:${students}">-->
 <!--           <li href="/addstudent/eachstudent" th:text="${student.studentFirstName}"></li></a>-->
 <!--    </div>-->
 
-<!--<div style="display:inline-block;">-->
+
 <!--    <a> Car Line</a>-->
 
 <!--</div>-->
@@ -47,6 +84,6 @@
 <!--        <li href="/addstudent/eachstudent" th:text="${student.studentFirstName}"></li></a>-->
 <!--</div>-->
 
-
-</body>
-</html>
+<!--</section>-->
+<!--</body>-->
+<!--</html>-->

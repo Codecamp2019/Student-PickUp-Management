@@ -42,8 +42,12 @@ public class StudentController {
             return "student";
         }
         studentService.createStudent(newstudent);
-        model.addAttribute("students", studentDao.findAll());
-        //model.addAttribute("students", studentDao.findByColumnandValue(newstudent.getPickUpType(),"BUS_LINE"));
+        //model.addAttribute("students", studentDao.findAll());
+        model.addAttribute("students1", studentDao.findAllBypickUpType("AFTERCARE"));
+        model.addAttribute("students2", studentDao.findAllBypickUpType("BUS_LINE"));
+        model.addAttribute("students3", studentDao.findAllBypickUpType("CARLINE"));
+        model.addAttribute("students4", studentDao.findAllBypickUpType("WALKERS"));
+
         return "mainpage";
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -67,7 +71,10 @@ public class StudentController {
         Student student1 = studentDao.findById(studentId).get();
         student1.setPickUpType(student.getPickUpType());
         studentDao.save(student1);
-        model.addAttribute("students", studentDao.findAll());
-    return "mainpage";
+        model.addAttribute("students1", studentDao.findAllBypickUpType("AFTERCARE"));
+        model.addAttribute("students2", studentDao.findAllBypickUpType("BUS_LINE"));
+        model.addAttribute("students3", studentDao.findAllBypickUpType("CARLINE"));
+        model.addAttribute("students4", studentDao.findAllBypickUpType("WALKERS"));
+        return "mainpage";
     }
 }

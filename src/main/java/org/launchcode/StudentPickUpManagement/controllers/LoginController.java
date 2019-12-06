@@ -55,7 +55,12 @@ public class LoginController {
             if (loginService.validateUser(newuser))
                 {
                 model.addAttribute("username", "Welcome " + newuser.getUsername() + "");
-                model.addAttribute("students", studentDao.findAll());
+                    model.addAttribute("students1", studentDao.findAllBypickUpType("AFTERCARE"));
+                    model.addAttribute("students2", studentDao.findAllBypickUpType("BUS_LINE"));
+                    model.addAttribute("students3", studentDao.findAllBypickUpType("CARLINE"));
+                    model.addAttribute("students4", studentDao.findAllBypickUpType("WALKERS"));
+
+//                    model.addAttribute("students", studentDao.findAll());
                 return "mainpage";
             }
 // if invalid user or wrong password redirect him to login page with invalidcredentials prompt

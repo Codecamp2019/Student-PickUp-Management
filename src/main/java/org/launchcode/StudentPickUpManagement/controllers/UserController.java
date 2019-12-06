@@ -59,13 +59,21 @@ public class UserController
         //User newuser1 = userDao.findByUsername(newuser.getUsername());
        // setUserInSession(request.getSession(), newuser1);
         model.addAttribute("username", "Welcome " + newuser.getUsername() + "");
-        model.addAttribute("students", studentDao.findAll());
+        model.addAttribute("students1", studentDao.findAllBypickUpType("AFTERCARE"));
+        model.addAttribute("students2", studentDao.findAllBypickUpType("BUS_LINE"));
+        model.addAttribute("students3", studentDao.findAllBypickUpType("CARLINE"));
+        model.addAttribute("students4", studentDao.findAllBypickUpType("WALKERS"));
+        //model.addAttribute("students", studentDao.findAll());
         return "mainpage";
     }
     @RequestMapping(value = "/pickUpList", method = RequestMethod.GET)
     public String pickup(Model model) {
         model.addAttribute(new StudentModel());
-        model.addAttribute("students", studentDao.findAll());
+        model.addAttribute("students1", studentDao.findAllBypickUpType("AFTERCARE"));
+        model.addAttribute("students2", studentDao.findAllBypickUpType("BUS_LINE"));
+        model.addAttribute("students3", studentDao.findAllBypickUpType("CARLINE"));
+        model.addAttribute("students4", studentDao.findAllBypickUpType("WALKERS"));
+
         return "mainpage";
 
     }
