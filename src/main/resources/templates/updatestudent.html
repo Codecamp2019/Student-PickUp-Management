@@ -10,7 +10,7 @@
 <center><h4 th:text = ${title}>Student Update Page</h4></center>
 
 
-<form th:action="@{/addstudent/eachstudent}" th:object="${studentModel}" method="post">
+<form th:action="@{'/addstudent/eachstudent/' + ${student.student_id}}" th:object="${student}" method="post">
     <table class="container" th:each="student:${student}">
             <tr class="list-group-item-dark">
                 <td ><label >Student Name:</label></td>
@@ -23,14 +23,33 @@
                 <td th:for="parentLastName" th:text="${student.parentLastName}"></td>
             </tr>
          <tr class="list-group-item-dark"><td><label th:for="pickUpType">PickUp Type:</label></td>
-            <td><select>
-                <option th:each="pickUpType : ${T(org.launchcode.StudentPickUpManagement.models.Entity.pickUpType).values()}"
-                        th:text = "${pickUpType.type}"
-                        th:value="${student.pickUpType}" name="pickUpType"></option></select>
+
+            <td>
+<!--                <select>-->
+<!--                <option  th:field="${student.pickUpType}"-->
+<!--                         th:each="pickUpType : ${T(org.launchcode.StudentPickUpManagement.models.Entity.pickUpType).values()}"-->
+<!--                         th:value = "${student.pickUpType}" selected ${student.pickUpType}-->
+<!--                         th:selected ="${pickUpType.type=='${student.pickUpType}'}" th:text = "${pickUpType.type}" name="pickUpType"></option>-->
+<!--                </select>-->
+
+
+                <select name="pickUpType" class="form-control" th:field="*{pickUpType}">
+                    <option th:each="pickUpType : ${T(org.launchcode.StudentPickUpManagement.models.Entity.pickUpType).values()}"
+                            th:text = "${pickUpType.type}"
+                            th:value="${pickUpType}"></option>
+
+<!--                    -->
+<!--                    <option  th:each="pickUpType : ${T(org.launchcode.StudentPickUpManagement.models.Entity.pickUpType).values()}"-->
+<!--                                                 th:value = "${student.pickUpType}"-->
+<!--                                                 th:selected ="${pickUpType.type=='${student.pickUpType}'}"-->
+<!--                                                 th:text = "${pickUpType.type}" name="pickUpType"></option>-->
+<!--&lt;!&ndash;                    <option th:field="${student.pickUpType}" th:value="${student.pickUpType}" selected th:text="${student.pickUpType}">&ndash;&gt;-->
+                </select>
             </td>
              <td></td>
+
         </tr>
-        <tr class="list-group-item-dark"><td colspan="3" align="center"><input type="submit" value="submit"/></td></tr>
+        <tr class="list-group-item-dark"><td colspan="3" align="center"><input type="submit" value="submit" /></td></tr>
     </table>
         </form>
 

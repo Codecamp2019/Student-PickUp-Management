@@ -41,11 +41,6 @@ public class StudentController {
             model.addAttribute("title", "Add Student page: ");
             return "student";
         }
-        //create userid
-//        User user = userDao.findById(21);
-//        System.out.println("User..."+user.getEmail());
-//        User user = userDao.findByUsername("username");
-//        newstudent.setUser(user);
         studentService.createStudent(newstudent);
         model.addAttribute("students", studentDao.findAll());
         //model.addAttribute("students", studentDao.findByColumnandValue(newstudent.getPickUpType(),"BUS_LINE"));
@@ -59,44 +54,20 @@ public class StudentController {
            @RequestMapping(value = "/eachstudent/{studentId}", method = RequestMethod.GET)
     public String eachstudent(Model model, @PathVariable int studentId) {
                  model.addAttribute("title", "Update Student Page");
-        //find student details by id and update the pickup typ
+                 StudentModel studentModel = new StudentModel();
+
+        //find student details by id and update the pickup type
                Student student = studentDao.findById(studentId).get();
-               model.addAttribute(new StudentModel());
+
                model.addAttribute("student", student);
-              // model.addAttribute("studentId", student.getStudent_id());
-       return "updatestudent";
+              return "updatestudent";
     }
-    @RequestMapping(value = "/eachstudent", method = RequestMethod.POST)
-    public String eachstudent(@ModelAttribute StudentModel newstudent, Model model) throws Exception{
-          studentService.createStudent(newstudent);
-          model.addAttribute("students", studentDao.findAll());
+    @RequestMapping(value = "/eachstudent/{studentId}", method = RequestMethod.POST)
+    public String eachstudent(Model model, @ModelAttribute Student student, @PathVariable int studentId) throws Exception{
+        Student student1 = studentDao.findById(studentId).get();
+        student1.setPickUpType(student.getPickUpType());
+        studentDao.save(student1);
+        model.addAttribute("students", studentDao.findAll());
     return "mainpage";
     }
 }
-
-//
-//
-//    @RequestMapping(value = "add", method = RequestMethod.GET)
-//    public String displayAddStudentForm(Model model) {
-//        model.addAttribute("title", "Add Student");
-//        model.addAttribute(new Student());
-//        model.addAttribute("categories", studentDao.findAll());
-//        return "cheese/add";
-//    }
-//
-//    @RequestMapping(value = "add", method = RequestMethod.POST)
-//    public String processAddStudentForm(@ModelAttribute  @Valid Student newStudent,
-//                                       Errors errors,
-//                                       @RequestParam int categoryId,
-//                                       Model model) {
-//
-//        if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add Student");
-//            return "cheese/add";
-//        }
-//
-//        User user1 = userDao.findById(categoryId);
-//        newStudent.setUser(user1);
-//        studentDao.save(newStudent);
-//        return "redirect:";
-//    }}
